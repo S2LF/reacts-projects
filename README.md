@@ -4,9 +4,9 @@
 
 ## After clone
 
-You need to npm install
+First, you need to `npm install`
 
-Check if `eslint --v`
+Check if `eslint --v` 
 
 Run `npm run lint` & `npm run lint-fix`
 
