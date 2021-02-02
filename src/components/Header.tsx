@@ -7,7 +7,7 @@ import {
   Switch,
 } from 'react-router-dom';
 import Home from './Home';
-import Test from './Test';
+import Memory from './Memory/Memory';
 
 function Header(): JSX.Element {
   return (
@@ -41,7 +41,7 @@ function Header(): JSX.Element {
 
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/memory" exact component={Test} />
+          <Route path="/memory" exact component={Memory} />
         </Switch>
       </Router>
     </header>
