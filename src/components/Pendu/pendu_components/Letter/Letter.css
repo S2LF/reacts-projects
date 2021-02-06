@@ -1,0 +1,11 @@
+.letter{
+    padding:0.5em 1em;
+    text-align: center;
+    cursor: pointer;
+    width: 43px;
+}
+
+.letter.use{
+    background-color: rgb(185, 185, 185);
+    cursor:initial;
+}

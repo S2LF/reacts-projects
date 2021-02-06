@@ -1,0 +1,23 @@
+.main-wrapper{
+    margin: 1em;
+}
+
+.home_img img{
+    width: 350px;
+}
+.home_img{
+    min-height: 250px;
+}
+
+.wrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+}
+
+#root {
+    height: 100vh;
+    margin:auto;
+    text-align: center;
+}

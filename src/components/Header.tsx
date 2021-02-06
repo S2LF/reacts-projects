@@ -8,42 +8,38 @@ import {
 } from 'react-router-dom';
 import Home from './Home';
 import Memory from './Memory/Memory';
+import Pendu from './Pendu/Pendu';
 
 function Header(): JSX.Element {
   return (
     <header>
-      <Router>
-        <Navbar color="primary">
-          <NavbarBrand
-            tag={RouterNavLink}
-            exact
-            to="/"
-            activeClassName="active"
-          >
-            Reactstrap
-          </NavbarBrand>
-          <Nav>
-            <NavItem>
-              <NavLink
-                tag={RouterNavLink}
-                exact
-                activeClassname="active"
-                to="/memory"
-              >
-                Memory
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink>Pendu</NavLink>
-            </NavItem>
-          </Nav>
-        </Navbar>
-
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/memory" exact component={Memory} />
-        </Switch>
-      </Router>
+      <Navbar color="primary">
+        <NavbarBrand tag={RouterNavLink} exact to="/" activeClassName="active">
+          Reactstrap
+        </NavbarBrand>
+        <Nav>
+          <NavItem>
+            <NavLink
+              tag={RouterNavLink}
+              exact
+              activeClassname="active"
+              to="/memory"
+            >
+              Memory
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              tag={RouterNavLink}
+              exact
+              activeClassname="active"
+              to="/pendu"
+            >
+              Pendu
+            </NavLink>
+          </NavItem>
+        </Nav>
+      </Navbar>
     </header>
   );
 }
