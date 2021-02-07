@@ -47,7 +47,7 @@ function Home(): JSX.Element {
               Tester
             </Button>
             <a
-              href="https://www.github.com"
+              href="https://github.com/S2LF/reacts-projects/tree/master/src/components/Pendu"
               target="blanck"
               className="btn btn-secondary m-1"
             >
