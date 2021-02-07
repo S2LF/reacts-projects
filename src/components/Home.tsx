@@ -7,6 +7,7 @@ import {
   CardSubtitle,
   CardText,
   CardTitle,
+  NavLink,
 } from 'reactstrap';
 
 function Home(): JSX.Element {
@@ -25,11 +26,18 @@ function Home(): JSX.Element {
             </CardSubtitle>
           </CardBody>
           <figure className="home_img d-flex">
-            <img
-              src={`${process.env.PUBLIC_URL}/img/memory.png`}
-              alt="memory"
-              className="align-self-center"
-            />
+            <NavLink
+              tag={RouterNavLink}
+              exact
+              activeClassName="active"
+              to="/memory"
+            >
+              <img
+                src={`${process.env.PUBLIC_URL}/img/memory.png`}
+                alt="memory"
+                className="align-self-center"
+              />
+            </NavLink>
           </figure>
           <CardBody>
             <CardText>
@@ -64,11 +72,18 @@ function Home(): JSX.Element {
             </CardSubtitle>
           </CardBody>
           <figure className="home_img d-flex">
-            <img
-              src={`${process.env.PUBLIC_URL}/img/img_pendu.png`}
-              alt="pendu"
-              className="align-self-center"
-            />
+            <NavLink
+              tag={RouterNavLink}
+              exact
+              activeClassName="active"
+              to="/pendu"
+            >
+              <img
+                src={`${process.env.PUBLIC_URL}/img/img_pendu.png`}
+                alt="pendu"
+                className="align-self-center"
+              />
+            </NavLink>
           </figure>
           <CardBody>
             <CardText>
@@ -86,7 +101,7 @@ function Home(): JSX.Element {
               Tester
             </Button>
             <a
-              href="https://www.github.com"
+              href="https://github.com/S2LF/reacts-projects/tree/master/src/components/Pendu"
               target="blanck"
               className="btn btn-secondary m-1"
             >

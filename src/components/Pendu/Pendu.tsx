@@ -7,7 +7,6 @@ import {
   Form,
   FormGroup,
   Input,
-  Label,
   Modal,
   ModalBody,
   ModalHeader,
@@ -73,9 +72,7 @@ function Pendu(): JSX.Element {
     } else {
       words.shift();
       if (words.length !== 0) {
-        // console.log(words);
         const wordArr = slugify(words[0].mot).toUpperCase().split('');
-        // console.log('log', wordArr);
         setNewWordInput('');
         setShuffleWord(wordArr);
       } else {
@@ -84,7 +81,6 @@ function Pendu(): JSX.Element {
     }
   };
 
-  // console.log(shuffleWord);
   const won =
     tried.length >= 1 && difference(shuffleWord, tried).length === [].length;
   const lost = failed >= 11;
@@ -207,21 +203,19 @@ function Pendu(): JSX.Element {
                     </div>
                   </div>
                   <Modal isOpen={modal} toggle={() => setModal(!modal)}>
-                    <ModalHeader>Choisir le prochain mot:</ModalHeader>
+                    <ModalHeader className="text-center">
+                      Choisir le prochain mot
+                    </ModalHeader>
                     <ModalBody>
                       <Container className="reset text-center">
-                        <Form inline>
+                        <Form inline className="justify-content-center">
                           <FormGroup>
-                            <Label htmlFor="word">
-                              Prochain mot :&nbsp;
-                              <Input
-                                id="word"
-                                value={newWordInput}
-                                onChange={(e) =>
-                                  setNewWordInput(e.target.value)
-                                }
-                              />
-                            </Label>
+                            <Input
+                              id="word"
+                              value={newWordInput}
+                              placeholder="mot à deviner"
+                              onChange={(e) => setNewWordInput(e.target.value)}
+                            />
                             &nbsp;
                           </FormGroup>
                           <Button
@@ -257,7 +251,7 @@ function Pendu(): JSX.Element {
                 <CardText>
                   Ce jeu a été réalisé avec l&apos;API Dicolink
                   <br />
-                  afin de générer des mots aléatoirement.
+                  qui permet la génération aléatoire des mots.
                 </CardText>
                 <a href="https://www.dicolink.com" target="blank">
                   <img

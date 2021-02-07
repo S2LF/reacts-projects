@@ -16,11 +16,7 @@ export type HallOfFameTypes = {
 function HallOfFame({ HoF }: HallOfFameTypes): JSX.Element {
   // console.log(HoF);
 
-  // eslint-disable-next-line func-names
-  const sorted = HoF.sort(function (
-    a: { guesses: number },
-    b: { guesses: number }
-  ) {
+  HoF.sort((a: { guesses: number }, b: { guesses: number }) => {
     return a.guesses - b.guesses;
   });
   // console.log('sorted', sorted);
