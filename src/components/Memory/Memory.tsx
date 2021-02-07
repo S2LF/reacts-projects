@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import shuffle from 'lodash.shuffle';
 import './Memory.css';
 import Axios from 'axios';
+import { Spinner } from 'reactstrap';
 import Card from './memory_components/Card/Card';
 import GuessCount from './memory_components/GuessCount/GuessCount';
 import HallOfFame, {
@@ -18,6 +19,7 @@ function Memory(): JSX.Element {
   const [currentPair, setCurrentPair] = useState<number[]>([]);
   const [matchCardIndices, setMatchCardIndices] = useState<number[]>([]);
   const [hallOfFame, setHallOfFame] = useState<HoFTypes[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   function generateCard() {
     const result = [];
@@ -74,16 +76,18 @@ function Memory(): JSX.Element {
 
     return indexMatched ? 'visible' : 'hidden';
   }
-
-  const won = matchCardIndices.length === cards.length;
+  // const won = matchCardIndices.length === cards.length;
+  const won = matchCardIndices.length === 2;
 
   useEffect(() => {
+    setLoading(true);
     const fetchMemories = async () => {
       try {
         const result = await Axios(
           `${process.env.REACT_APP_API_CALL}/api/memories`
         );
         setHallOfFame(result.data.result);
+        setLoading(false);
       } catch (err) {
         console.log(err);
       }
@@ -116,18 +120,18 @@ function Memory(): JSX.Element {
                 index={index}
               />
             ))}
-            {won && (
-              <HoFInput
-                guesses={guesses}
-                onSuccess={(new_scored: HoFTypes) => {
-                  restartGame(new_scored);
-                }}
-              />
-            )}
           </div>
         </main>
-        <aside>
-          <HallOfFame HoF={hallOfFame} />
+        <aside className="align-self-end">
+          {won && (
+            <HoFInput
+              guesses={guesses}
+              onSuccess={(new_scored: HoFTypes) => {
+                restartGame(new_scored);
+              }}
+            />
+          )}
+          {loading ? <Spinner color="info" /> : <HallOfFame HoF={hallOfFame} />}
         </aside>
       </div>
     </>

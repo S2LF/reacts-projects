@@ -7,7 +7,7 @@ export type GuessType = {
 
 function GuessCount({ guesses }: GuessType): JSX.Element {
   return (
-    <div className={`guesses ${guesses >= 32 ? `red` : `green`} `}>
+    <div className={`guesses ${guesses >= 60 ? `red` : `green`} `}>
       {guesses}
     </div>
   );

@@ -38,17 +38,26 @@ function HallOfFame({ HoF }: HallOfFameTypes): JSX.Element {
           </tr>
         </thead>
         <tbody>
-          {HoF.map(({ _id, guesses, date, name, justNew }, index) => {
-            return (
-              <tr key={_id} className={justNew ? 'new' : ''}>
-                <td>{index + 1}</td>
-                <td className="score">{guesses}</td>
-                <td className="player">{name}</td>
-                <td className="date">{date}</td>
-              </tr>
-            );
-          })}
+          {HoF.slice(0, 10).map(
+            ({ _id, guesses, date, name, justNew }, index) => {
+              return (
+                <tr key={_id} className={justNew ? 'new' : ''}>
+                  <td>{index + 1}</td>
+                  <td className="score">{guesses}</td>
+                  <td className="player">{name}</td>
+                  <td className="date">{date}</td>
+                </tr>
+              );
+            }
+          )}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan={4} className="pt-2">
+              Nombre total de scores enregistrés : {HoF.length}
+            </td>
+          </tr>
+        </tfoot>
       </table>
     </>
   );

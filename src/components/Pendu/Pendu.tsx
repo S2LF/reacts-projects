@@ -12,6 +12,9 @@ import {
   ModalBody,
   ModalHeader,
   Spinner,
+  Card,
+  CardBody,
+  CardText,
 } from 'reactstrap';
 import axios from 'axios';
 import Letter from './pendu_components/Letter/Letter';
@@ -70,9 +73,9 @@ function Pendu(): JSX.Element {
     } else {
       words.shift();
       if (words.length !== 0) {
-        console.log(words);
+        // console.log(words);
         const wordArr = slugify(words[0].mot).toUpperCase().split('');
-        console.log('log', wordArr);
+        // console.log('log', wordArr);
         setNewWordInput('');
         setShuffleWord(wordArr);
       } else {
@@ -81,7 +84,7 @@ function Pendu(): JSX.Element {
     }
   };
 
-  console.log(shuffleWord);
+  // console.log(shuffleWord);
   const won =
     tried.length >= 1 && difference(shuffleWord, tried).length === [].length;
   const lost = failed >= 11;
@@ -105,7 +108,7 @@ function Pendu(): JSX.Element {
   }
 
   function resetGame() {
-    console.log('reset');
+    // console.log('reset');
     generateWord();
     setGuesses(0);
     setFailed(0);
@@ -123,7 +126,7 @@ function Pendu(): JSX.Element {
         setShuffleWord(slugify(result.data[0].mot).toUpperCase().split(''));
         setLoading(false);
         setWords(result.data);
-        console.log('result', result.data);
+        // console.log('result', result.data);
       } catch (err) {
         console.log(err);
       }
@@ -133,109 +136,139 @@ function Pendu(): JSX.Element {
   }, [fetchData]);
 
   return (
-    <div className="App">
+    <div>
       <h1>Jeu du pendu</h1>
-      <div>
-        <img
-          src={`${process.env.PUBLIC_URL}/img/pendu/pendu${failed}.png`}
-          alt="pendu_dessin"
-        />
-      </div>
-      <div className="word">
-        <h1>
-          Devine le mot :&nbsp;
-          {loading && (
-            <>
-              &nbsp;
-              <Spinner color="info" />
-              &nbsp;
-            </>
-          )}
-          {!loading &&
-            shuffleWord.map((letter, index) => (
-              <GuessWord
-                status={getStatusForLetter(letter)}
-                letter={letter}
-                // eslint-disable-next-line react/no-array-index-key
-                key={index}
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-4 offset-4">
+            <div>
+              <img
+                src={`${process.env.PUBLIC_URL}/img/pendu/pendu${failed}.png`}
+                alt="pendu_dessin"
               />
-            ))}
-        </h1>
-      </div>
-      <div>
-        <GuessCount guesses={guesses} failed={failed} />
-      </div>
-      <div className="clavier mt-2 mb-2">
-        {LETTERS.map((letter, index) => (
-          <Letter
-            letter={letter}
-            index={index}
-            // eslint-disable-next-line react/no-array-index-key
-            key={index}
-            feedback={getFeedbackForLetter(letter)}
-            onClick={(res: string) => {
-              handleLetterClick(res);
-            }}
-          />
-        ))}
-      </div>
-      <div>
-        {(won || lost) && (
-          <>
-            <div className="border border-primary rounded col-4 m-auto p-4">
-              <h1 className={won ? `text-success` : `text-danger`}>
-                {won ? `GAGNÉ !!` : `PERDU !!`}
-              </h1>
-              <div className="d-flex justify-content-around align-items-center">
-                <a href={`${words[0].dicolinkUrl}`} target="blank" className="">
-                  <Button color="info">Voir la définition</Button>
-                </a>
-                <Button color="success" onClick={() => setModal(true)}>
-                  Nouveau mot
-                </Button>
-              </div>
             </div>
-            <Modal isOpen={modal} toggle={() => setModal(!modal)}>
-              <ModalHeader>Choisir le prochain mot:</ModalHeader>
-              <ModalBody>
-                <Container className="reset text-center">
-                  <Form inline>
-                    <FormGroup>
-                      <Label htmlFor="word">
-                        Prochain mot :&nbsp;
-                        <Input
-                          id="word"
-                          value={newWordInput}
-                          onChange={(e) => setNewWordInput(e.target.value)}
-                        />
-                      </Label>
-                      &nbsp;
-                    </FormGroup>
-                    <Button
-                      color="primary"
-                      type="submit"
-                      onClick={() => {
-                        resetGame();
-                      }}
-                    >
-                      OK
-                    </Button>
-                  </Form>
-                  <hr />
-                  <Button
-                    color="primary"
-                    type="submit"
-                    onClick={() => {
-                      resetGame();
-                    }}
-                  >
-                    Générer un mot au hasard
-                  </Button>
-                </Container>
-              </ModalBody>
-            </Modal>
-          </>
-        )}
+            <div className="word">
+              <h1>
+                Devine le mot :&nbsp;
+                {loading && (
+                  <>
+                    &nbsp;
+                    <Spinner color="info" />
+                    &nbsp;
+                  </>
+                )}
+                {!loading &&
+                  shuffleWord.map((letter, index) => (
+                    <GuessWord
+                      status={getStatusForLetter(letter)}
+                      letter={letter}
+                      // eslint-disable-next-line react/no-array-index-key
+                      key={index}
+                    />
+                  ))}
+              </h1>
+            </div>
+            <div>
+              <GuessCount guesses={guesses} failed={failed} />
+            </div>
+            <div className="clavier mt-2 mb-2">
+              {LETTERS.map((letter, index) => (
+                <Letter
+                  loading={loading}
+                  letter={letter}
+                  index={index}
+                  // eslint-disable-next-line react/no-array-index-key
+                  key={index}
+                  feedback={getFeedbackForLetter(letter)}
+                  onClick={(res: string) => {
+                    handleLetterClick(res);
+                  }}
+                />
+              ))}
+            </div>
+            <div>
+              {(won || lost) && (
+                <>
+                  <div className="border border-primary rounded col-12 m-auto p-4">
+                    <h1 className={won ? `text-success` : `text-danger`}>
+                      {won ? `GAGNÉ !!` : `PERDU !!`}
+                    </h1>
+                    <div className="d-flex justify-content-around align-items-center">
+                      <a
+                        href={`${words[0].dicolinkUrl}`}
+                        target="blank"
+                        className=""
+                      >
+                        <Button color="info">Voir la définition</Button>
+                      </a>
+                      <Button color="success" onClick={() => setModal(true)}>
+                        Nouveau mot
+                      </Button>
+                    </div>
+                  </div>
+                  <Modal isOpen={modal} toggle={() => setModal(!modal)}>
+                    <ModalHeader>Choisir le prochain mot:</ModalHeader>
+                    <ModalBody>
+                      <Container className="reset text-center">
+                        <Form inline>
+                          <FormGroup>
+                            <Label htmlFor="word">
+                              Prochain mot :&nbsp;
+                              <Input
+                                id="word"
+                                value={newWordInput}
+                                onChange={(e) =>
+                                  setNewWordInput(e.target.value)
+                                }
+                              />
+                            </Label>
+                            &nbsp;
+                          </FormGroup>
+                          <Button
+                            color="primary"
+                            type="submit"
+                            onClick={() => {
+                              resetGame();
+                            }}
+                          >
+                            OK
+                          </Button>
+                        </Form>
+                        <hr />
+                        <Button
+                          color="primary"
+                          type="submit"
+                          onClick={() => {
+                            resetGame();
+                          }}
+                        >
+                          Générer un mot au hasard
+                        </Button>
+                      </Container>
+                    </ModalBody>
+                  </Modal>
+                </>
+              )}
+            </div>
+          </div>
+          <div className="col-4 d-flex">
+            <Card className="m-auto align-items-center">
+              <CardBody>
+                <CardText>
+                  Ce jeu a été réalisé avec l&apos;API Dicolink
+                  <br />
+                  afin de générer des mots aléatoirement.
+                </CardText>
+                <a href="https://www.dicolink.com" target="blank">
+                  <img
+                    src="https://www.dicolink.com/imgs/logo-dicolink.png"
+                    alt="logo DicoLink"
+                  />
+                </a>
+              </CardBody>
+            </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

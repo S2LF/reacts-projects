@@ -40,7 +40,7 @@ function Home(): JSX.Element {
               color="primary"
               tag={RouterNavLink}
               exact
-              activeClassname="active"
+              activeClassName="active"
               to="/memory"
               className="m-1"
             >
@@ -79,7 +79,7 @@ function Home(): JSX.Element {
               color="primary"
               tag={RouterNavLink}
               exact
-              activeClassname="active"
+              activeClassName="active"
               to="/pendu"
               className="m-1"
             >
