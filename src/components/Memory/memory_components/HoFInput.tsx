@@ -1,5 +1,6 @@
 import Axios from 'axios';
 import React, { FormEvent, useState } from 'react';
+import { Button, Form, Input, Label } from 'reactstrap';
 
 type HoFInputType = {
   guesses: number;
@@ -46,15 +47,27 @@ function HoFInput({ guesses, onSuccess }: HoFInputType): JSX.Element {
   };
 
   return (
-    <form onSubmit={submit}>
-      <input
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Votre nom"
-      />
-      <button type="submit">OK</button>
-      {error !== '' && <span className="error">{error}</span>}
-    </form>
+    <div className="mt-4 ">
+      <Form onSubmit={submit} inline className="justify-content-center">
+        <Label className="pl-1">
+          Bravo ! Votre score est de&nbsp;
+          <span className={`h1 ${guesses >= 60 ? `red` : `green`} `}>
+            {guesses}
+          </span>
+          &nbsp;, quel est votre nom ?&nbsp;&nbsp;
+        </Label>
+        <Input
+          className="rounded p-1"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          placeholder="Votre nom"
+        />
+        <Button color="primary" type="submit">
+          OK
+        </Button>
+        {error !== '' && <span className="text-danger">{error}</span>}
+      </Form>
+    </div>
   );
 }
 

@@ -6,6 +6,7 @@ type LetterTypes = {
   letter: string;
   feedback: string;
   index: number;
+  loading: boolean;
   onClick: (res: string) => void;
 };
 function Letter({
@@ -13,12 +14,13 @@ function Letter({
   feedback,
   onClick,
   index,
+  loading,
 }: LetterTypes): JSX.Element {
   return (
     <button
       type="button"
       className={`letter ${feedback} `}
-      disabled={feedback === 'use'}
+      disabled={feedback === 'use' || loading}
       onKeyDown={() => onClick(letter)}
       onClick={() => onClick(letter)}
     >
