@@ -28,7 +28,8 @@ describe('App', () => {
         <App />
       </BrowserRouter>
     );
-    const linkElement = screen.getByText('©Syl20 @2021');
+    // const linkElement = screen.getByText('©Syl20 - sylvainallain.fr - @2021');
+    const linkElement = screen.getByRole('link', { name: 'sylvainallain.fr' });
     expect(linkElement).toBeInTheDocument();
   });
 });
