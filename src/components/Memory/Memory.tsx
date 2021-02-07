@@ -76,8 +76,8 @@ function Memory(): JSX.Element {
 
     return indexMatched ? 'visible' : 'hidden';
   }
-  // const won = matchCardIndices.length === cards.length;
-  const won = matchCardIndices.length === 2;
+  const won = matchCardIndices.length === cards.length;
+  // const won = matchCardIndices.length === 2;
 
   useEffect(() => {
     setLoading(true);
@@ -122,7 +122,9 @@ function Memory(): JSX.Element {
             ))}
           </div>
         </main>
-        <aside className="align-self-end">
+        <aside
+          className={`${loading ? 'align-self-center' : 'align-self-end'}`}
+        >
           {won && (
             <HoFInput
               guesses={guesses}
