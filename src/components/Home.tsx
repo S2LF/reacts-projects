@@ -55,7 +55,7 @@ function Home(): JSX.Element {
               Tester
             </Button>
             <a
-              href="https://github.com/S2LF/reacts-projects/tree/master/src/components/Pendu"
+              href="https://github.com/S2LF/reacts-projects/tree/master/src/components/Memory"
               target="blanck"
               className="btn btn-secondary m-1"
             >
