@@ -16,3 +16,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: syl20-projects #Must be unique in Heroku
           heroku_email: "contact@sylvainallain.fr"
+          usedocker: true
