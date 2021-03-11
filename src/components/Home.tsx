@@ -17,8 +17,8 @@ function Home(): JSX.Element {
         <h1>Mes Projets React & NodeJs</h1>
       </div>
 
-      <div className="col-8 m-auto d-flex justify-content-between">
-        <Card className=" align-items-center">
+      <div className="col-sm-12 col-md-10 col-12 m-auto d-flex flex-wrap justify-content-center">
+        <Card className="align-items-center mr-0 mr-lg-2">
           <CardBody>
             <CardTitle tag="h2">Jeu du Memory</CardTitle>
             <CardSubtitle tag="h5" className="mb-2 text-muted">
@@ -64,7 +64,7 @@ function Home(): JSX.Element {
           </CardBody>
         </Card>
 
-        <Card className="align-items-center">
+        <Card className="mt-2 mt-lg-0  ml-0 ml-lg-2 align-items-center">
           <CardBody>
             <CardTitle tag="h2">Jeu du Pendu</CardTitle>
             <CardSubtitle tag="h5" className="mb-2 text-muted">

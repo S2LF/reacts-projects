@@ -136,7 +136,7 @@ function Pendu(): JSX.Element {
       <h1>Jeu du pendu</h1>
       <div className="container-fluid">
         <div className="row">
-          <div className="col-4 offset-4">
+          <div className="col-12 col-lg-4 offset-lg-4">
             <div>
               <img
                 src={`${process.env.PUBLIC_URL}/img/pendu/pendu${failed}.png`}
@@ -145,7 +145,7 @@ function Pendu(): JSX.Element {
             </div>
             <div className="word">
               <h1>
-                Devine le mot :&nbsp;
+                Devine le mot :{' '}
                 {loading && (
                   <>
                     &nbsp;
@@ -245,7 +245,7 @@ function Pendu(): JSX.Element {
               )}
             </div>
           </div>
-          <div className="col-4 d-flex">
+          <div className="col-lg-4 col-12 pt-3 pt-lg-0 d-flex">
             <Card className="m-auto align-items-center">
               <CardBody>
                 <CardText>

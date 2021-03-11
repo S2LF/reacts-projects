@@ -104,10 +104,10 @@ function Memory(): JSX.Element {
   }
 
   return (
-    <>
+    <div className="main-wrapper">
       <h1 className="title">Memory</h1>
-      <div className="game">
-        <main>
+      <div className="d-flex justify-content-around flex-wrap">
+        <main className=" mb-5 mb-lg-0">
           <GuessCount guesses={guesses} />
           <div className="memory">
             {cards.map((card, index) => (
@@ -136,7 +136,7 @@ function Memory(): JSX.Element {
           {loading ? <Spinner color="info" /> : <HallOfFame HoF={hallOfFame} />}
         </aside>
       </div>
-    </>
+    </div>
   );
 }
 

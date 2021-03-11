@@ -21,3 +21,43 @@
     margin:auto;
     text-align: center;
 }
+
+.img-contain{
+    object-fit: contain;
+}
+
+@media screen and (max-width: 1480px){
+    header img{
+        display:none;
+    }
+    header.sticky img{
+        display: initial;
+    }
+}
+
+/* @media screen and (max-width:1100px){
+
+
+
+} */
+
+
+
+@media screen and (max-width:640px){
+
+    .home_img img {
+        width: 100%;
+    }
+    .home_img{
+        min-height: initial;
+    }
+
+    .wrapper .memory {
+        width: 100%;
+    }
+
+    .wrapper .clavier{
+        width: 301px;
+    }
+
+}
