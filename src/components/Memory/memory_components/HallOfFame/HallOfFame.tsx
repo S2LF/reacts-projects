@@ -1,5 +1,7 @@
 import React from 'react';
+
 import './HallOfFame.css';
+import _ from 'lodash';
 
 export type HoFTypes = {
   _id: string;
@@ -19,7 +21,11 @@ function HallOfFame({ HoF }: HallOfFameTypes): JSX.Element {
   HoF.sort((a: { guesses: number }, b: { guesses: number }) => {
     return a.guesses - b.guesses;
   });
-  // console.log('sorted', sorted);
+  // console.log('sorted', HoF);
+
+  const HoFUniq = _.uniqBy(HoF, 'name');
+
+  // console.log('uniq', _.uniqBy(HoF, 'name'));
 
   return (
     <>
@@ -34,7 +40,7 @@ function HallOfFame({ HoF }: HallOfFameTypes): JSX.Element {
           </tr>
         </thead>
         <tbody>
-          {HoF.slice(0, 10).map(
+          {HoFUniq.slice(0, 10).map(
             ({ _id, guesses, date, name, justNew }, index) => {
               return (
                 <tr key={_id} className={justNew ? 'new' : ''}>
