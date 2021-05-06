@@ -13,3 +13,4 @@ RUN npm run build
 FROM nginx:1.19.0
 COPY --from=build /app/build /build
 COPY ./nginx.conf /etc/nginx/nginx.conf
+CMD sed -i -e 's/$PORT/'"$PORT"'/g' /etc/nginx/nginx.conf && nginx -g 'daemon off;'
