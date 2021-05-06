@@ -1,11 +1,15 @@
-FROM node:14-alpine
+FROM node:14-alpine as build
 
-RUN mkdir /app
 WORKDIR /app
 COPY ./package.json ./package.json
 RUN npm i
 COPY ./src ./src
 COPY ./public ./public
 COPY ./tsconfig.json ./tsconfig.json
+COPY ./.env.production .
 
-CMD npm start
+RUN npm run build
+
+FROM nginx:1.19.0
+COPY --from=build /app/build /build
+COPY ./nginx.conf /etc/nginx/nginx.conf
