@@ -11,6 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - 
+        name: create .env.production
+        run: |
+          touch .env.production
+          echo "REACT_APP_API_CALL=${{ secrets.API_CALL }}" >> .env.production
+          echo "REACT_APP_API_KEY=${{ secrets.API_KEY}}" >> .env.production
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
