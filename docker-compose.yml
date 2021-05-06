@@ -8,8 +8,5 @@ services:
     volumes:
       - ./src:/app/src
     ports: 
-      - 3000:80
+      - 3000:3000
     container_name: front
-    # environment: 
-      # - REACT_APP_API_CALL=http://localhost:5000
-      # - REACT_APP_API_KEY=MgoptOi7fD-4G96HIZ36FOhfE3ZPaCOb
